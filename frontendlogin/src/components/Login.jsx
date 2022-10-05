@@ -74,6 +74,7 @@ function Login(props) {
 					<div>
 						<label htmlFor="">Password</label>
 						<Input
+							type="password"
 							placeholder="Enter Password"
 							name="password"
 							value={password}
