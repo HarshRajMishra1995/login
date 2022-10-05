@@ -4,7 +4,8 @@ const loginModel = require("../models/login");
 const saltRounds = 10;
 
 module.exports.signUp = async (req, res) => {
-	const { email, password, name, photo } = req.body;
+  const { email, password, name, photo } = req.body;
+  console.log(req.body)
   const data = await loginModel.findOne({ email: email })
   if (data) {
     res.status(400).json({ message: `User Already Exists with the email ${email}` })
