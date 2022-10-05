@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 import { Input, Button } from "antd";
 
 function Login(props) {
+	const token = localStorage.getItem("token");
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -25,6 +26,7 @@ function Login(props) {
 			.then((res) => {
 				localStorage.setItem("User Email", res.data.data.email);
 				localStorage.setItem("User Name", res.data.data.name);
+				localStorage.setItem("token", res.data.data.token);
 				navigate(`/UserProfile`);
 			})
 			.catch((err) => {
