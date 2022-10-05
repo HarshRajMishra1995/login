@@ -18,7 +18,6 @@ module.exports.userProfile = async (req, res) => {
 
 module.exports.editUserProfile = async (req, res) => {
   const { name, photo } = req.body
-  console.log(req.body)
   const userProfileData = await loginModel.findOneAndUpdate ({ email:req.query.email },{name,photo})
   if (userProfileData) {
     const { email, name, photo } = userProfileData
