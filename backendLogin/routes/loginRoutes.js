@@ -4,7 +4,8 @@ const router = express.Router()
 const authController=require("../controllers/Auth")
 
 
-router.get("/", authController.login)
+router.post("/signUp", authController.signUp)
+router.post("/", authController.login)
 
 
 
