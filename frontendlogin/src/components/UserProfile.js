@@ -1,9 +1,11 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Input, Button } from "antd";
 
 function UserProfile () {
+	const navigate = useNavigate();
   const userEmail = localStorage.getItem('User Email')
   const token = localStorage.getItem("token")
   const [userName, setUserName] = useState("");
@@ -36,15 +38,31 @@ function UserProfile () {
   };
 
   const handleUserEdit =async () => {
-    await axios.patch(`http://localhost:4000/api/v1/user/editUserProfile?email=${userEmail}`, { name: userName, email :email,photo:photo},{ headers: { Authorization: token } }).then((res) => {
+		await axios.patch(`http://localhost:4000/api/v1/user/editUserProfile?email=${userEmail}`, { name: userName, email: email, photo: photo }, { headers: { Authorization: token } }).then((res) => {
+			alert("User Profile Updated Successfully")
       getUserProfile()
     }).catch((err) => {
       console.log("Got Some Error In Getting User Profile",err)
     })
-  }
+	}
+
+	const handleLogout = () => {
+		localStorage.removeItem("token")
+		localStorage.removeItem("User Email")
+		localStorage.removeItem("User Name")
+		navigate("/")
+	}
 
   return (
-    <>
+		<>
+			<div style={{
+					display: "flex",
+					justifyContent: "flex-end",
+				}}>
+           <Button type="primary" onClick={handleLogout}>
+							Logout
+						</Button>
+			</div>
     <div
 				style={{
 					display: "flex",
@@ -52,7 +70,7 @@ function UserProfile () {
 				}}>
 				<div
 					style={{
-						marginTop: "10%",
+						marginTop: "5%",
 						display: "flex",
 						justifyContent: "center",
 						flexDirection: "column",
