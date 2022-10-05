@@ -65,7 +65,7 @@ function UserProfile () {
 						<h3>UserProfile</h3>
 					</div>
 					<div>
-						<img src="" alt="abc" style={{width:"50px",height:"50px",border:"1px solid black"}} />
+						<img src="" alt="User Image " style={{width:"50px",height:"50px",border:"1px solid black"}} />
 					</div>
 					<div>
 						<label htmlFor="">Email</label>
